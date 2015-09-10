@@ -14,6 +14,17 @@
 		56CFE8FC1BA181AC0097E799 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56CFE8FA1BA181AC0097E799 /* LaunchScreen.storyboard */; };
 		56CFE9071BA181AC0097E799 /* MediaDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CFE9061BA181AC0097E799 /* MediaDemoTests.swift */; };
 		56CFE9121BA181AC0097E799 /* MediaDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CFE9111BA181AC0097E799 /* MediaDemoUITests.swift */; };
+		56CFE92B1BA188170097E799 /* AudioToolbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CFE92A1BA188170097E799 /* AudioToolbox.swift */; };
+		56CFE92D1BA189080097E799 /* AVAudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CFE92C1BA189080097E799 /* AVAudioRecorder.swift */; };
+		56CFE92F1BA189280097E799 /* AVAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CFE92E1BA189280097E799 /* AVAudioPlayer.swift */; };
+		56CFE9311BA189840097E799 /* MPMusicLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CFE9301BA189840097E799 /* MPMusicLibrary.swift */; };
+		56CFE9331BA189AA0097E799 /* MPAVAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CFE9321BA189AA0097E799 /* MPAVAudioPlayer.swift */; };
+		56CFE9351BA189DD0097E799 /* MPMediaPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CFE9341BA189DD0097E799 /* MPMediaPlayer.swift */; };
+		56CFE9371BA18A040097E799 /* AVPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CFE9361BA18A040097E799 /* AVPlayer.swift */; };
+		56CFE9391BA18A350097E799 /* UIImagePickerPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CFE9381BA18A350097E799 /* UIImagePickerPhoto.swift */; };
+		56CFE93B1BA18A620097E799 /* UIImagePickerMediaRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CFE93A1BA18A620097E799 /* UIImagePickerMediaRecorder.swift */; };
+		56CFE93D1BA18A880097E799 /* AVFoundationPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CFE93C1BA18A880097E799 /* AVFoundationPhoto.swift */; };
+		56CFE93F1BA18AB00097E799 /* AVFoundationMediaRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CFE93E1BA18AB00097E799 /* AVFoundationMediaRecorder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +58,17 @@
 		56CFE90D1BA181AC0097E799 /* MediaDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MediaDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		56CFE9111BA181AC0097E799 /* MediaDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaDemoUITests.swift; sourceTree = "<group>"; };
 		56CFE9131BA181AC0097E799 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		56CFE92A1BA188170097E799 /* AudioToolbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioToolbox.swift; sourceTree = "<group>"; };
+		56CFE92C1BA189080097E799 /* AVAudioRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVAudioRecorder.swift; sourceTree = "<group>"; };
+		56CFE92E1BA189280097E799 /* AVAudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVAudioPlayer.swift; sourceTree = "<group>"; };
+		56CFE9301BA189840097E799 /* MPMusicLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPMusicLibrary.swift; sourceTree = "<group>"; };
+		56CFE9321BA189AA0097E799 /* MPAVAudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPAVAudioPlayer.swift; sourceTree = "<group>"; };
+		56CFE9341BA189DD0097E799 /* MPMediaPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPMediaPlayer.swift; sourceTree = "<group>"; };
+		56CFE9361BA18A040097E799 /* AVPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPlayer.swift; sourceTree = "<group>"; };
+		56CFE9381BA18A350097E799 /* UIImagePickerPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImagePickerPhoto.swift; sourceTree = "<group>"; };
+		56CFE93A1BA18A620097E799 /* UIImagePickerMediaRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImagePickerMediaRecorder.swift; sourceTree = "<group>"; };
+		56CFE93C1BA18A880097E799 /* AVFoundationPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVFoundationPhoto.swift; sourceTree = "<group>"; };
+		56CFE93E1BA18AB00097E799 /* AVFoundationMediaRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVFoundationMediaRecorder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +119,17 @@
 		56CFE8F01BA181AC0097E799 /* MediaDemo */ = {
 			isa = PBXGroup;
 			children = (
+				56CFE9291BA187A10097E799 /* AVFoundation录制视频 */,
+				56CFE9281BA1879F0097E799 /* UIImagePickerController视频录制 */,
+				56CFE9271BA1879D0097E799 /* AVFoundation拍照 */,
+				56CFE9261BA1879B0097E799 /* UIImagePickerController拍照 */,
+				56CFE9251BA187990097E799 /* AVPlayer自定义播放视频 */,
+				56CFE9241BA187960097E799 /* MPMoviePlayerController播放视频 */,
+				56CFE9231BA187930097E799 /* MPMoviePlayerController播放音频 */,
+				56CFE9221BA187890097E799 /* MPMusicPlayerController播放音乐库音乐 */,
+				56CFE9211BA187860097E799 /* AVAudioPlayer播放音频 */,
+				56CFE9201BA187830097E799 /* AVAudioRecorder录音 */,
+				56CFE91F1BA187690097E799 /* AudioToolbox播放音效 */,
 				56CFE8F11BA181AC0097E799 /* AppDelegate.swift */,
 				56CFE8F31BA181AC0097E799 /* ViewController.swift */,
 				56CFE8F51BA181AC0097E799 /* Main.storyboard */,
@@ -123,6 +156,94 @@
 				56CFE9131BA181AC0097E799 /* Info.plist */,
 			);
 			path = MediaDemoUITests;
+			sourceTree = "<group>";
+		};
+		56CFE91F1BA187690097E799 /* AudioToolbox播放音效 */ = {
+			isa = PBXGroup;
+			children = (
+				56CFE92A1BA188170097E799 /* AudioToolbox.swift */,
+			);
+			name = "AudioToolbox播放音效";
+			sourceTree = "<group>";
+		};
+		56CFE9201BA187830097E799 /* AVAudioRecorder录音 */ = {
+			isa = PBXGroup;
+			children = (
+				56CFE92C1BA189080097E799 /* AVAudioRecorder.swift */,
+			);
+			name = "AVAudioRecorder录音";
+			sourceTree = "<group>";
+		};
+		56CFE9211BA187860097E799 /* AVAudioPlayer播放音频 */ = {
+			isa = PBXGroup;
+			children = (
+				56CFE92E1BA189280097E799 /* AVAudioPlayer.swift */,
+			);
+			name = "AVAudioPlayer播放音频";
+			sourceTree = "<group>";
+		};
+		56CFE9221BA187890097E799 /* MPMusicPlayerController播放音乐库音乐 */ = {
+			isa = PBXGroup;
+			children = (
+				56CFE9301BA189840097E799 /* MPMusicLibrary.swift */,
+			);
+			name = "MPMusicPlayerController播放音乐库音乐";
+			sourceTree = "<group>";
+		};
+		56CFE9231BA187930097E799 /* MPMoviePlayerController播放音频 */ = {
+			isa = PBXGroup;
+			children = (
+				56CFE9321BA189AA0097E799 /* MPAVAudioPlayer.swift */,
+			);
+			name = "MPMoviePlayerController播放音频";
+			sourceTree = "<group>";
+		};
+		56CFE9241BA187960097E799 /* MPMoviePlayerController播放视频 */ = {
+			isa = PBXGroup;
+			children = (
+				56CFE9341BA189DD0097E799 /* MPMediaPlayer.swift */,
+			);
+			name = "MPMoviePlayerController播放视频";
+			sourceTree = "<group>";
+		};
+		56CFE9251BA187990097E799 /* AVPlayer自定义播放视频 */ = {
+			isa = PBXGroup;
+			children = (
+				56CFE9361BA18A040097E799 /* AVPlayer.swift */,
+			);
+			name = "AVPlayer自定义播放视频";
+			sourceTree = "<group>";
+		};
+		56CFE9261BA1879B0097E799 /* UIImagePickerController拍照 */ = {
+			isa = PBXGroup;
+			children = (
+				56CFE9381BA18A350097E799 /* UIImagePickerPhoto.swift */,
+			);
+			name = "UIImagePickerController拍照";
+			sourceTree = "<group>";
+		};
+		56CFE9271BA1879D0097E799 /* AVFoundation拍照 */ = {
+			isa = PBXGroup;
+			children = (
+				56CFE93C1BA18A880097E799 /* AVFoundationPhoto.swift */,
+			);
+			name = "AVFoundation拍照";
+			sourceTree = "<group>";
+		};
+		56CFE9281BA1879F0097E799 /* UIImagePickerController视频录制 */ = {
+			isa = PBXGroup;
+			children = (
+				56CFE93A1BA18A620097E799 /* UIImagePickerMediaRecorder.swift */,
+			);
+			name = "UIImagePickerController视频录制";
+			sourceTree = "<group>";
+		};
+		56CFE9291BA187A10097E799 /* AVFoundation录制视频 */ = {
+			isa = PBXGroup;
+			children = (
+				56CFE93E1BA18AB00097E799 /* AVFoundationMediaRecorder.swift */,
+			);
+			name = "AVFoundation录制视频";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,8 +376,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56CFE9351BA189DD0097E799 /* MPMediaPlayer.swift in Sources */,
 				56CFE8F41BA181AC0097E799 /* ViewController.swift in Sources */,
+				56CFE93D1BA18A880097E799 /* AVFoundationPhoto.swift in Sources */,
+				56CFE9371BA18A040097E799 /* AVPlayer.swift in Sources */,
+				56CFE9331BA189AA0097E799 /* MPAVAudioPlayer.swift in Sources */,
+				56CFE93F1BA18AB00097E799 /* AVFoundationMediaRecorder.swift in Sources */,
 				56CFE8F21BA181AC0097E799 /* AppDelegate.swift in Sources */,
+				56CFE92F1BA189280097E799 /* AVAudioPlayer.swift in Sources */,
+				56CFE92B1BA188170097E799 /* AudioToolbox.swift in Sources */,
+				56CFE9311BA189840097E799 /* MPMusicLibrary.swift in Sources */,
+				56CFE93B1BA18A620097E799 /* UIImagePickerMediaRecorder.swift in Sources */,
+				56CFE9391BA18A350097E799 /* UIImagePickerPhoto.swift in Sources */,
+				56CFE92D1BA189080097E799 /* AVAudioRecorder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
