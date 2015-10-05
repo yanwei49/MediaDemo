@@ -313,6 +313,7 @@
 				TargetAttributes = {
 					56CFE8ED1BA181AC0097E799 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = FZWQ45G5LH;
 					};
 					56CFE9011BA181AC0097E799 = {
 						CreatedOnToolsVersion = 7.0;
@@ -530,7 +531,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = MediaDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.qunongzhuang.MediaDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -541,7 +544,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = MediaDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.qunongzhuang.MediaDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -615,6 +620,7 @@
 				56CFE9181BA181AC0097E799 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		56CFE9191BA181AC0097E799 /* Build configuration list for PBXNativeTarget "MediaDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -623,6 +629,7 @@
 				56CFE91B1BA181AC0097E799 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		56CFE91C1BA181AC0097E799 /* Build configuration list for PBXNativeTarget "MediaDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -631,6 +638,7 @@
 				56CFE91E1BA181AC0097E799 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
