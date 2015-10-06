@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5678F4DE1BC3C3F900B39F58 /* camera_focus_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 5678F4DC1BC3C3F900B39F58 /* camera_focus_red.png */; settings = {ASSET_TAGS = (); }; };
+		5678F4DF1BC3C3F900B39F58 /* camera_focus_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5678F4DD1BC3C3F900B39F58 /* camera_focus_red@2x.png */; settings = {ASSET_TAGS = (); }; };
 		56CFE8F21BA181AC0097E799 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CFE8F11BA181AC0097E799 /* AppDelegate.swift */; };
 		56CFE8F41BA181AC0097E799 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CFE8F31BA181AC0097E799 /* ViewController.swift */; };
 		56CFE8F71BA181AC0097E799 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56CFE8F51BA181AC0097E799 /* Main.storyboard */; };
@@ -45,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5678F4DC1BC3C3F900B39F58 /* camera_focus_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_focus_red.png; sourceTree = "<group>"; };
+		5678F4DD1BC3C3F900B39F58 /* camera_focus_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera_focus_red@2x.png"; sourceTree = "<group>"; };
 		56CFE8EE1BA181AC0097E799 /* MediaDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MediaDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56CFE8F11BA181AC0097E799 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		56CFE8F31BA181AC0097E799 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +138,8 @@
 				56CFE8F31BA181AC0097E799 /* ViewController.swift */,
 				56CFE8F51BA181AC0097E799 /* Main.storyboard */,
 				56CFE8F81BA181AC0097E799 /* Assets.xcassets */,
+				5678F4DC1BC3C3F900B39F58 /* camera_focus_red.png */,
+				5678F4DD1BC3C3F900B39F58 /* camera_focus_red@2x.png */,
 				56CFE8FA1BA181AC0097E799 /* LaunchScreen.storyboard */,
 				56CFE8FD1BA181AC0097E799 /* Info.plist */,
 			);
@@ -350,7 +356,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5678F4DF1BC3C3F900B39F58 /* camera_focus_red@2x.png in Resources */,
 				56CFE8FC1BA181AC0097E799 /* LaunchScreen.storyboard in Resources */,
+				5678F4DE1BC3C3F900B39F58 /* camera_focus_red.png in Resources */,
 				56CFE8F91BA181AC0097E799 /* Assets.xcassets in Resources */,
 				56CFE8F71BA181AC0097E799 /* Main.storyboard in Resources */,
 			);

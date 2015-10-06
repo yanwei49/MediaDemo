@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import AssetsLibrary
 
-class AVFoundationMediaRecorder: UIViewController, AVCaptureFileOutputRecordingDelegate {
+class AVFoundationMediaRecorder: UIViewController {
     
     var captureSession: AVCaptureSession!   //负责输入和输出设置之间的数据传递
     var captureDeviceInput: AVCaptureDeviceInput!    //负责从AVCaptureDevice获得输入数据
@@ -21,6 +21,8 @@ class AVFoundationMediaRecorder: UIViewController, AVCaptureFileOutputRecordingD
     var movieView: UIView!
     var enableRotation: Bool = true
     var backgroundTaskIdentifier: UIBackgroundTaskIdentifier!
+    var focusCursor: UIImageView!
+//    var closure: (captureDevice: AVCaptureDevice) -> Void?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +51,12 @@ class AVFoundationMediaRecorder: UIViewController, AVCaptureFileOutputRecordingD
         movieView = UIView(frame: CGRectMake(0, (view.bounds.height-300)/2, view.bounds.width, 300))
         movieView.backgroundColor = UIColor.whiteColor()
         view.addSubview(movieView)
+        movieView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "settingFocusCursor:"))
+        
+        focusCursor = UIImageView(frame: CGRectMake(movieView.bounds.width/2-movieView.bounds.height/4, movieView.bounds.height/4, movieView.bounds.height/2, movieView.bounds.height/2))
+        focusCursor.image = UIImage(named: "camera_focus_red.png")
+        movieView.addSubview(focusCursor)
+        focusCursor.alpha = 0
         
         takeButton = UIButton(frame: CGRectMake((view.bounds.width-100)/2, view.bounds.height-100, 100, 50))
         takeButton.backgroundColor = UIColor.orangeColor()
@@ -126,7 +134,8 @@ class AVFoundationMediaRecorder: UIViewController, AVCaptureFileOutputRecordingD
         captureVideoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill       //填充模式
         
         //将视频预览层添加到界面中
-        layer.addSublayer(captureVideoPreviewLayer)
+        layer.insertSublayer(captureVideoPreviewLayer, below: focusCursor.layer)
+//        layer.addSublayer(captureVideoPreviewLayer)
         
         //添加设备区域改变通知
         //注意添加区域改变捕获通知必须首先设置设备允许捕获
@@ -136,12 +145,12 @@ class AVFoundationMediaRecorder: UIViewController, AVCaptureFileOutputRecordingD
     
     //录制按钮
     func beginRecorderMovie(button: UIButton) {
-        button.setTitle("录制中", forState: .Normal)
-        enableRotation = false
         //根据设备输出获得连接
         let captureConnection = captureMovieFileOutput.connectionWithMediaType(AVMediaTypeAudio)
         //根据连接获取到设备输出的数据
         if !captureMovieFileOutput.recording {
+            button.setTitle("录制中", forState: .Normal)
+            enableRotation = false
             //如果支持多任务则则开始多任务
             if UIDevice.currentDevice().multitaskingSupported {
                 backgroundTaskIdentifier = UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler(nil)
@@ -152,6 +161,7 @@ class AVFoundationMediaRecorder: UIViewController, AVCaptureFileOutputRecordingD
             let url = NSURL(fileURLWithPath: outputFielPath)
             captureMovieFileOutput.startRecordingToOutputFileURL(url, recordingDelegate: self)
         }else {
+            button.setTitle("录制", forState: .Normal)
             captureMovieFileOutput .stopRecording()
         }
     }
@@ -168,57 +178,64 @@ class AVFoundationMediaRecorder: UIViewController, AVCaptureFileOutputRecordingD
         let toChangeDevice = getCameraDeviceWithPosition(toChangePosition)
         addNotificationToCaptureDevice(toChangeDevice)
         //获得要调整的设备输入对象
+        var toChangeDeviceInput: AVCaptureDeviceInput!
         do {
-            let toChangeDeviceInput = try AVCaptureDeviceInput(device: toChangeDevice)
-            //改变会话的配置前一定要先开启配置，配置完成后提交配置改变
-            captureSession.beginConfiguration()
-            //移除原有输入对象
-            captureSession.removeInput(captureDeviceInput)
-            //添加新的输入对象
-            if captureSession.canAddInput(toChangeDeviceInput) {
-                captureSession.canAddInput(toChangeDeviceInput)
-                captureDeviceInput = toChangeDeviceInput
-            }
-            
-            //提交会话配置
-            captureSession.commitConfiguration()
+            toChangeDeviceInput = try AVCaptureDeviceInput(device: toChangeDevice)
         }catch {}
+        //改变会话的配置前一定要先开启配置，配置完成后提交配置改变
+        captureSession.beginConfiguration()
+        //移除原有输入对象
+        captureSession.removeInput(captureDeviceInput)
+        //添加新的输入对象
+        if captureSession.canAddInput(toChangeDeviceInput) {
+            captureSession.addInput(toChangeDeviceInput)
+            captureDeviceInput = toChangeDeviceInput
+        }
         
+        //提交会话配置
+        captureSession.commitConfiguration()
     }
     
-    
-    //视频输出代理
-    func captureOutput(captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAtURL outputFileURL: NSURL!, fromConnections connections: [AnyObject]!, error: NSError!) {
-        print("开始录制")
+    //手势获取聚焦光
+    func settingFocusCursor(tap: UITapGestureRecognizer) {
+        let point = tap.locationInView(tap.view)
+        //将UI坐标转化为摄像头坐标
+        let cameraPoint = captureVideoPreviewLayer.captureDevicePointOfInterestForPoint(point)
+        setFocusCursorWithPoint(point)
+        focusWithMode(.AutoFocus, exposureMode: .AutoExpose, point: cameraPoint)
     }
     
-    func captureOutput(captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAtURL fileURL: NSURL!, fromConnections connections: [AnyObject]!) {
-        print("录制完成")
-        enableRotation = true
-        let lastBackgroundTaskIdentifier = backgroundTaskIdentifier
-        backgroundTaskIdentifier = UIBackgroundTaskInvalid
-        let assetsLibrary = ALAssetsLibrary()
-        assetsLibrary.writeVideoAtPathToSavedPhotosAlbum(fileURL) { (assetUrl, error) -> Void in
-            if error != nil {
-                print("保存视频到相簿过程中发生错误")
-            }
-            do {
-                try NSFileManager.defaultManager().removeItemAtURL(fileURL)
-            }catch {}
-            if lastBackgroundTaskIdentifier != UIBackgroundTaskInvalid {
-                UIApplication.sharedApplication().endBackgroundTask(lastBackgroundTaskIdentifier)
-            }
+    //设置聚焦光标位置
+    func setFocusCursorWithPoint(point: CGPoint) {
+        focusCursor.center = point
+        focusCursor.transform = CGAffineTransformMakeScale(1.2, 1.2)
+        focusCursor.alpha = 1
+        UIView.animateWithDuration(1, animations: { () -> Void in
+            self.focusCursor.transform = CGAffineTransformMakeScale(1, 1)
+            }) { (finish) -> Void in
+                self.focusCursor.alpha = 0
         }
     }
     
-    override func shouldAutorotate() -> Bool {
-        return enableRotation
+    //设置聚焦点
+    func focusWithMode(focusModel: AVCaptureFocusMode, exposureMode: AVCaptureExposureMode, point:CGPoint) {
+        changeDeviceProperty { (captureDevice) -> Void in
+            if captureDevice.isFocusModeSupported(focusModel) {
+                captureDevice.focusMode = focusModel
+            }
+            if captureDevice.isExposureModeSupported(exposureMode) {
+                captureDevice.exposureMode = exposureMode
+            }
+            captureDevice.exposurePointOfInterest = point
+            captureDevice.focusPointOfInterest = point
+        }
     }
-    
     
     //给输入设备添加通知
     func addNotificationToCaptureDevice(captureDevice: AVCaptureDevice) {
-        changeDeviceProperty(captureDevice)
+        changeDeviceProperty { (captureDevice) -> Void in
+            captureDevice.subjectAreaChangeMonitoringEnabled = true
+        }
         //添加设备区域变化通知
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "areaChange:", name: AVCaptureDeviceSubjectAreaDidChangeNotification, object: captureDevice)
     }
@@ -231,11 +248,11 @@ class AVFoundationMediaRecorder: UIViewController, AVCaptureFileOutputRecordingD
     
     
     //改变设备属性的统一操作方法
-    func changeDeviceProperty(captureDevice: AVCaptureDevice) {
+    func changeDeviceProperty(closure :(captureDevice: AVCaptureDevice) -> Void) {
         let cDevice = captureDeviceInput.device
         do {
             try cDevice.lockForConfiguration()
-            cDevice.subjectAreaChangeMonitoringEnabled = true
+            closure(captureDevice: cDevice)
             cDevice.unlockForConfiguration()
         }catch {
             print("设置设备属性过程发生错误")
@@ -253,5 +270,59 @@ class AVFoundationMediaRecorder: UIViewController, AVCaptureFileOutputRecordingD
         }
         return cameras.first as! AVCaptureDevice
     }
-    
 }
+
+
+extension AVFoundationMediaRecorder: AVCaptureFileOutputRecordingDelegate {
+    //视频输出代理
+    func captureOutput(captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAtURL outputFileURL: NSURL!, fromConnections connections: [AnyObject]!, error: NSError!) {
+        print("录制完成")
+        enableRotation = true
+        let lastBackgroundTaskIdentifier = backgroundTaskIdentifier
+        backgroundTaskIdentifier = UIBackgroundTaskInvalid
+        let assetsLibrary = ALAssetsLibrary()
+        assetsLibrary.writeVideoAtPathToSavedPhotosAlbum(outputFileURL) { (assetUrl, error) -> Void in
+            if error != nil {
+                print("保存视频到相簿过程中发生错误")
+            }
+            do {
+                try NSFileManager.defaultManager().removeItemAtURL(outputFileURL)
+            }catch {}
+            if lastBackgroundTaskIdentifier != UIBackgroundTaskInvalid {
+                UIApplication.sharedApplication().endBackgroundTask(lastBackgroundTaskIdentifier)
+            }
+        }
+    }
+    
+    func captureOutput(captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAtURL fileURL: NSURL!, fromConnections connections: [AnyObject]!) {
+        print("开始录制")
+    }
+    
+    //是否支持旋转
+    override func shouldAutorotate() -> Bool {
+        return enableRotation
+    }
+    
+    //屏幕旋转时调整视频预览图层的方向
+    override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+        let captureConnection = captureVideoPreviewLayer.connection
+        switch toInterfaceOrientation {
+            case .Portrait:
+                captureConnection.videoOrientation = .Portrait
+            case .PortraitUpsideDown:
+                captureConnection.videoOrientation = .PortraitUpsideDown
+            case .LandscapeLeft:
+                captureConnection.videoOrientation = .LandscapeRight
+            case .LandscapeRight:
+                captureConnection.videoOrientation = .LandscapeLeft
+            default:
+                print("")
+        }
+    }
+    
+    //旋转后重新设置大小
+    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+        captureVideoPreviewLayer.frame = movieView.bounds
+    }
+}
+
